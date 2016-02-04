@@ -20,10 +20,18 @@ Then run vim:
 vim
 ```
 
+Press ENTER as many time as necessary to ignore the errors due to the fact that the plugins are not installed yet.
+
 and in vim, use the following commands to update your bundles:
 
 ```
 :PlugInstall
+:qa
 ```
 
+Run vim again:
+
+```
+vim
+```
 That's it.
