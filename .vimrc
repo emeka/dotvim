@@ -455,6 +455,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/csapprox'
+Plug 'pearofducks/ansible-vim'
 
 call plug#end()
 
@@ -638,3 +639,9 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+"------------------------------------------------------------------------------
+" ansible-vim
+"------------------------------------------------------------------------------
+
+
+
