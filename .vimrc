@@ -126,7 +126,6 @@ set foldcolumn=0
 " Enable Ctrl-A/Ctrl-X to work on octal and hex numbers, as well as characters
 set nrformats=octal,hex,alpha
 
-
 "------------------------------------------------------------------------------
 " Colors and Fonts
 "------------------------------------------------------------------------------
@@ -446,6 +445,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'gregsexton/gitv'
 Plug 'Shougo/neocomplete'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
