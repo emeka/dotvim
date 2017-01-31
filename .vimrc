@@ -30,6 +30,10 @@ command W w !sudo tee % > /dev/null
 inoremap jj <esc>
 nnoremap JJJJ <nop>
 
+
+" Use system clipboard
+set clipboard=unnamed
+
 "------------------------------------------------------------------------------
 " VIM user interface
 "------------------------------------------------------------------------------
@@ -133,7 +137,7 @@ set nrformats=octal,hex,alpha
 " Enable syntax highlighting
 syntax enable
 
-colorscheme foursee 
+colorscheme xcode 
 
 set background=dark
 
@@ -584,7 +588,8 @@ let g:neocomplete#force_omni_input_patterns.go = '[^.[:digit:] *\t]\.'
 "------------------------------------------------------------------------------
 " Vim-go
 "------------------------------------------------------------------------------
-let g:go_fmt_fail_silently = 1
+let g:go_fmt_fail_silently = 0
+let g:go_fmt_command = 'goimports'
 
 " Show a list of interfaces which is implemented by the type under your cursor
 au FileType go nmap <Leader>s <Plug>(go-implements)
@@ -605,6 +610,12 @@ au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 
+" Get definition
+au FileType go nmap <leader>g <Plug>(go-def)
+au FileType go nmap <leader>gg <Plug>(go-def-pop)
+au FileType go nmap <leader>gs <Plug>(go-def-stack)
+au FileType go nmap <leader>gc <Plug>(go-def-stack-clear)
+
 " By default syntax-highlighting for Functions, Methods and Structs is disabled.
 " Let's enable them!
 let g:go_highlight_functions = 1
@@ -612,6 +623,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 
 nmap <F8> :TagbarToggle<CR>
+let g:go_gotags_bin = 'gotags'
 let g:tagbar_type_go = {  
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
@@ -640,8 +652,12 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
 \ }
 "------------------------------------------------------------------------------
-" ansible-vim
+" Autoload .vimrc on change
 "------------------------------------------------------------------------------
 
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
 
 
