@@ -3,7 +3,7 @@
 "------------------------------------------------------------------------------
 
 " let's make sure we are in noncompatble mode
-set nocp
+set nocompatible
 
 " Sets how many lines of history VIM has to remember
 set history=700
@@ -29,7 +29,6 @@ command W w !sudo tee % > /dev/null
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <esc>
 nnoremap JJJJ <nop>
-
 
 " Use system clipboard
 set clipboard=unnamed
@@ -69,6 +68,8 @@ if has("win16") || has("win32")
 else
     set wildignore+=.git\*,.hg\*,.svn\*
 endif
+
+set wildignore+=*\\tmp\\*,*.swp,*.swo,*.zip,.git,.cabal-sandbox
 
 " Show line, column number, and relative position within a file in the status line
 set ruler
@@ -137,7 +138,7 @@ set nrformats=octal,hex,alpha
 " Enable syntax highlighting
 syntax enable
 
-colorscheme xcode 
+colorscheme foursee 
 
 set background=dark
 
@@ -207,6 +208,7 @@ set smarttab
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
+set softtabstop=4
 
 " Round indent to multiple of 'shiftwidth' for > and < commands
 set shiftround
@@ -382,7 +384,6 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
-
 "------------------------------------------------------------------------------
 " Misc
 "------------------------------------------------------------------------------
@@ -402,6 +403,7 @@ map <leader>pp :setlocal paste!<cr>
 " easy way to edit reload .vimrc
 nmap <leader>V :source $MYVIMRC<cr>
 nmap <leader>v :vsp $MYVIMRC<cr>
+
 
 "------------------------------------------------------------------------------
 " Helper functions
@@ -460,6 +462,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/csapprox'
 Plug 'pearofducks/ansible-vim'
+Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'godlygeek/tabular'
+Plug 'ervandew/supertab'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 call plug#end()
 
@@ -652,6 +660,49 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
 \ }
 "------------------------------------------------------------------------------
+" ghc-mod 
+"------------------------------------------------------------------------------
+
+map <silent> tw :GhcModTypeInsert<CR>
+map <silent> ts :GhcModSplitFunCase<CR>
+map <silent> tq :GhcModType<CR>
+map <silent> te :GhcModTypeClear<CR>
+
+"------------------------------------------------------------------------------
+" supertab 
+"------------------------------------------------------------------------------
+
+let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+
+if has("gui_running")
+      imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+else " no gui
+      if has("unix")
+          inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+      endif
+endif
+
+let g:haskellmode_completion_ghc = 1
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+"------------------------------------------------------------------------------
+" Tabularize 
+"------------------------------------------------------------------------------
+
+let g:haskell_tabular = 1
+
+vmap a= :Tabularize /=<CR>
+vmap a; :Tabularize /::<CR>
+vmap a- :Tabularize /-><CR>
+
+"------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
+" Ctrl-p 
+"------------------------------------------------------------------------------
+
+map <silent> <Leader>t :CtrlP()<CR>
+noremap <leader>b<space> :CtrlPBuffer<cr>
+let g:ctrlp_custom_ignore = '\v[\/]dist$'
+
 " Autoload .vimrc on change
 "------------------------------------------------------------------------------
 
