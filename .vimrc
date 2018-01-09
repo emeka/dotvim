@@ -460,8 +460,17 @@ Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/csapprox'
 Plug 'pearofducks/ansible-vim'
+Plug 'kylef/apiblueprint.vim'
+Plug 'majutsushi/tagbar'
 
 call plug#end()
+
+
+"------------------------------------------------------------------------------
+" Tagbar
+"------------------------------------------------------------------------------
+"
+nmap <F8> :TagbarToggle<CR>
 
 "------------------------------------------------------------------------------
 " NERDTree
@@ -590,6 +599,7 @@ let g:neocomplete#force_omni_input_patterns.go = '[^.[:digit:] *\t]\.'
 "------------------------------------------------------------------------------
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = 'goimports'
+let g:go_def_mode = 'godef'
 
 " Show a list of interfaces which is implemented by the type under your cursor
 au FileType go nmap <Leader>s <Plug>(go-implements)
