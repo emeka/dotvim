@@ -138,7 +138,7 @@ set nrformats=octal,hex,alpha
 " Enable syntax highlighting
 syntax enable
 
-colorscheme foursee 
+colorscheme xcode 
 
 set background=dark
 
