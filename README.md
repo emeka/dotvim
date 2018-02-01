@@ -11,7 +11,7 @@ home directory or create an alias if you are using a unix flavour.  My alias
 says:
 
 ```
-alias vim='vim -u ~/.vim/.vimrc'
+alias vim='vim -u ~/.vim/vimrc'
 ```
 
 Then run vim:
