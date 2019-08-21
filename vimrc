@@ -138,7 +138,7 @@ set nrformats=octal,hex,alpha
 " Enable syntax highlighting
 syntax enable
 
-colorscheme xcode 
+colorscheme  foursee
 
 set background=dark
 
@@ -466,7 +466,7 @@ endfunction
 call plug#begin('~/.vim/bundle')
 
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'gregsexton/gitv'
