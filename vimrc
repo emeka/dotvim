@@ -220,6 +220,9 @@ set tw=500
 set ai "Auto indent
 set si "Smart indent
 set nowrap "Don't Wrap lines (it is stupid)
+set formatoptions-=t
+
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 
 
 "------------------------------------------------------------------------------
@@ -479,7 +482,7 @@ Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'godlygeek/csapprox'
 Plug 'pearofducks/ansible-vim'
 Plug 'kylef/apiblueprint.vim'
@@ -490,6 +493,12 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'godlygeek/tabular'
 Plug 'ervandew/supertab'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'hashivim/vim-terraform'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'thosakwe/vim-flutter'
 
 call plug#end()
 
@@ -551,12 +560,16 @@ map <leader>dup :diffupdate<cr>
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set statusline+=%o
 
 let g:syntastic_aggregate_errors = 1
-let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_yaml_checkers = ['yamllint']
+let g:syntastic_java_checkers = ['checkstyle']
 
 "------------------------------------------------------------------------------
 " NeoComplete
@@ -691,6 +704,18 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
 \ }
 "------------------------------------------------------------------------------
+" Dart - Flutter 
+" https://dev.to/tavanarad/vim-as-a-flutter-ide-4p16
+" https://x-team.com/blog/neovim-flutter/
+"------------------------------------------------------------------------------
+
+let g:lsc_auto_map = v:true
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+
+"------------------------------------------------------------------------------
 " ghc-mod 
 "------------------------------------------------------------------------------
 
@@ -734,6 +759,15 @@ map <silent> <Leader>t :CtrlP()<CR>
 noremap <leader>b<space> :CtrlPBuffer<cr>
 let g:ctrlp_custom_ignore = '\v[\/]dist$'
 
+"------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
+" vim-terraform
+"------------------------------------------------------------------------------
+
+let g:terraform_fmt_on_save=1
+let g:terraform_align=1
+
+"
 " Autoload .vimrc on change
 "------------------------------------------------------------------------------
 
